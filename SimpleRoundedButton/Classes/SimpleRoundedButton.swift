@@ -61,19 +61,13 @@ open class SimpleRoundedButton: UIButton {
         
         UIView.animate(withDuration: 0.2, animations: {
             self.titleLabel?.layer.opacity = 0.0    // hide title label
-        }, completion: { _ in
-            self.titleLabel?.removeFromSuperview()  // since we're competing with UIKit animations
         })
     }
     
     open func stopAnimating() {
         activityIndicator?.stopAnimating()
-        
-        if let titleLabel = self.titleLabel {
-            titleLabel.layer.opacity = 0.0
-            addSubview(titleLabel)
-        }
-        
+
+        self.titleLabel?.layer.opacity = 0.0
         UIView.animate(withDuration: 0.25, animations: {
             self.titleLabel?.layer.opacity = 1.0    // un-hide title label
         })
